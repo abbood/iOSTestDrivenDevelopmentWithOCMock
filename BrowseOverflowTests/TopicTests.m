@@ -22,30 +22,28 @@
 
 - (void)setUp
 {
-    [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
+    topic = [[Topic alloc] initWithName:@"iphone" tag:@"iphone"];
 }
 
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
-    [super tearDown];
+    topic = nil;
 }
 
 - (void)testThatTopicsExist {
-    Topic *newTopic = [[Topic alloc] init];
-    XCTAssertNotNil(newTopic, @"should be able to create topic instance");
+    XCTAssertNotNil(topic, @"should be able to create topic instance");
 }
 
 - (void)testThatTopicCanBeNamed {
-    Topic *namedTopic = [[Topic alloc] initWithName: @"iphone" tag:@"iphone"];
-    XCTAssertEqualObjects(namedTopic.name, @"iphone", @" the topic should have the name i give it");
+    XCTAssertEqualObjects(topic.name, @"iphone", @" the topic should have the name i give it");
 }
 
 - (void)testThatTopicHasATag {
-    Topic *taggedTopic = [[Topic alloc] initWithName: @"iphone" tag:@"iphone"];
-    XCTAssertEqualObjects(taggedTopic.tag, @"iphone", @"topics need to have tags");
-    
+    XCTAssertEqualObjects(topic.tag, @"iphone", @"topics need to have tags");
+}
+
+- (void)testForAListOfQuestions {
+    XCTAssertTrue([[topic recentQuestions] isKindOfClass:[NSArray class]], @"topics should provide a list of recent questions");
 }
 
 @end

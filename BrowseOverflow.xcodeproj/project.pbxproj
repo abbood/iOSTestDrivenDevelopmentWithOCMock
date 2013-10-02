@@ -23,6 +23,10 @@
 		D7C9CDA317FC237D00B0B026 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7C9CDA117FC237D00B0B026 /* InfoPlist.strings */; };
 		D7C9CDB017FC25C600B0B026 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C9CDAF17FC25C600B0B026 /* Topic.m */; };
 		D7C9CDB217FC297E00B0B026 /* TopicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C9CDB117FC297E00B0B026 /* TopicTests.m */; };
+		D7C9CDB417FC2E5200B0B026 /* QuestionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C9CDB317FC2E5200B0B026 /* QuestionTests.m */; };
+		D7C9CDB717FC2E9900B0B026 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C9CDB617FC2E9900B0B026 /* Question.m */; };
+		D7C9CDBD17FC333300B0B026 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C9CDBC17FC333300B0B026 /* Person.m */; };
+		D7C9CDC117FC340600B0B026 /* PersonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C9CDC017FC340600B0B026 /* PersonTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,12 @@
 		D7C9CDAE17FC25C600B0B026 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Topic.h; path = BrowseOverflow/Topic.h; sourceTree = SOURCE_ROOT; };
 		D7C9CDAF17FC25C600B0B026 /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Topic.m; path = BrowseOverflow/Topic.m; sourceTree = SOURCE_ROOT; };
 		D7C9CDB117FC297E00B0B026 /* TopicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicTests.m; sourceTree = "<group>"; };
+		D7C9CDB317FC2E5200B0B026 /* QuestionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionTests.m; sourceTree = "<group>"; };
+		D7C9CDB517FC2E9900B0B026 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Question.h; path = ../Question.h; sourceTree = "<group>"; };
+		D7C9CDB617FC2E9900B0B026 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Question.m; path = ../Question.m; sourceTree = "<group>"; };
+		D7C9CDBB17FC333300B0B026 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = ../Person.h; sourceTree = "<group>"; };
+		D7C9CDBC17FC333300B0B026 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = ../Person.m; sourceTree = "<group>"; };
+		D7C9CDC017FC340600B0B026 /* PersonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +128,12 @@
 		D7C9CD7C17FC237D00B0B026 /* BrowseOverflow */ = {
 			isa = PBXGroup;
 			children = (
+				D7C9CDBB17FC333300B0B026 /* Person.h */,
+				D7C9CDBC17FC333300B0B026 /* Person.m */,
 				D7C9CDAE17FC25C600B0B026 /* Topic.h */,
 				D7C9CDAF17FC25C600B0B026 /* Topic.m */,
+				D7C9CDB517FC2E9900B0B026 /* Question.h */,
+				D7C9CDB617FC2E9900B0B026 /* Question.m */,
 				D7C9CD8517FC237D00B0B026 /* AppDelegate.h */,
 				D7C9CD8617FC237D00B0B026 /* AppDelegate.m */,
 				D7C9CD8817FC237D00B0B026 /* Main.storyboard */,
@@ -147,7 +161,9 @@
 		D7C9CD9E17FC237D00B0B026 /* BrowseOverflowTests */ = {
 			isa = PBXGroup;
 			children = (
+				D7C9CDC017FC340600B0B026 /* PersonTests.m */,
 				D7C9CDB117FC297E00B0B026 /* TopicTests.m */,
+				D7C9CDB317FC2E5200B0B026 /* QuestionTests.m */,
 				D7C9CD9F17FC237D00B0B026 /* Supporting Files */,
 			);
 			path = BrowseOverflowTests;
@@ -261,7 +277,9 @@
 			files = (
 				D7C9CD8717FC237D00B0B026 /* AppDelegate.m in Sources */,
 				D7C9CD8D17FC237D00B0B026 /* MasterViewController.m in Sources */,
+				D7C9CDBD17FC333300B0B026 /* Person.m in Sources */,
 				D7C9CD8317FC237D00B0B026 /* main.m in Sources */,
+				D7C9CDB717FC2E9900B0B026 /* Question.m in Sources */,
 				D7C9CDB017FC25C600B0B026 /* Topic.m in Sources */,
 				D7C9CD9017FC237D00B0B026 /* DetailViewController.m in Sources */,
 			);
@@ -271,7 +289,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7C9CDC117FC340600B0B026 /* PersonTests.m in Sources */,
 				D7C9CDB217FC297E00B0B026 /* TopicTests.m in Sources */,
+				D7C9CDB417FC2E5200B0B026 /* QuestionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +492,7 @@
 				D7C9CDAA17FC237D00B0B026 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D7C9CDAB17FC237D00B0B026 /* Build configuration list for PBXNativeTarget "BrowseOverflowTests" */ = {
 			isa = XCConfigurationList;
@@ -480,6 +501,7 @@
 				D7C9CDAD17FC237D00B0B026 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
