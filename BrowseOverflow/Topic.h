@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class Question;
+
 @interface Topic : NSObject
 
 @property (readonly) NSString *name;
@@ -15,4 +17,6 @@
 
 - (id)initWithName:(NSString *)newName tag:(NSString *)newTag;
 - (NSArray *)recentQuestions;
+- (void)addQuestion: (Question *)question;
+
 @end
