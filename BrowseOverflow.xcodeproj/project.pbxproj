@@ -21,7 +21,8 @@
 		D7C9CD9A17FC237D00B0B026 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C9CD7617FC237D00B0B026 /* Foundation.framework */; };
 		D7C9CD9B17FC237D00B0B026 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C9CD7A17FC237D00B0B026 /* UIKit.framework */; };
 		D7C9CDA317FC237D00B0B026 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7C9CDA117FC237D00B0B026 /* InfoPlist.strings */; };
-		D7C9CDA517FC237D00B0B026 /* BrowseOverflowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C9CDA417FC237D00B0B026 /* BrowseOverflowTests.m */; };
+		D7C9CDB017FC25C600B0B026 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C9CDAF17FC25C600B0B026 /* Topic.m */; };
+		D7C9CDB217FC297E00B0B026 /* TopicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C9CDB117FC297E00B0B026 /* TopicTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +56,9 @@
 		D7C9CD9817FC237D00B0B026 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D7C9CDA017FC237D00B0B026 /* BrowseOverflowTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BrowseOverflowTests-Info.plist"; sourceTree = "<group>"; };
 		D7C9CDA217FC237D00B0B026 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D7C9CDA417FC237D00B0B026 /* BrowseOverflowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowseOverflowTests.m; sourceTree = "<group>"; };
+		D7C9CDAE17FC25C600B0B026 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Topic.h; path = BrowseOverflow/Topic.h; sourceTree = SOURCE_ROOT; };
+		D7C9CDAF17FC25C600B0B026 /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Topic.m; path = BrowseOverflow/Topic.m; sourceTree = SOURCE_ROOT; };
+		D7C9CDB117FC297E00B0B026 /* TopicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 		D7C9CD7C17FC237D00B0B026 /* BrowseOverflow */ = {
 			isa = PBXGroup;
 			children = (
+				D7C9CDAE17FC25C600B0B026 /* Topic.h */,
+				D7C9CDAF17FC25C600B0B026 /* Topic.m */,
 				D7C9CD8517FC237D00B0B026 /* AppDelegate.h */,
 				D7C9CD8617FC237D00B0B026 /* AppDelegate.m */,
 				D7C9CD8817FC237D00B0B026 /* Main.storyboard */,
@@ -142,7 +147,7 @@
 		D7C9CD9E17FC237D00B0B026 /* BrowseOverflowTests */ = {
 			isa = PBXGroup;
 			children = (
-				D7C9CDA417FC237D00B0B026 /* BrowseOverflowTests.m */,
+				D7C9CDB117FC297E00B0B026 /* TopicTests.m */,
 				D7C9CD9F17FC237D00B0B026 /* Supporting Files */,
 			);
 			path = BrowseOverflowTests;
@@ -257,6 +262,7 @@
 				D7C9CD8717FC237D00B0B026 /* AppDelegate.m in Sources */,
 				D7C9CD8D17FC237D00B0B026 /* MasterViewController.m in Sources */,
 				D7C9CD8317FC237D00B0B026 /* main.m in Sources */,
+				D7C9CDB017FC25C600B0B026 /* Topic.m in Sources */,
 				D7C9CD9017FC237D00B0B026 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,7 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7C9CDA517FC237D00B0B026 /* BrowseOverflowTests.m in Sources */,
+				D7C9CDB217FC297E00B0B026 /* TopicTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
