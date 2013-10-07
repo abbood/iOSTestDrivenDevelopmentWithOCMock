@@ -31,7 +31,16 @@
 - (void)setUp {
     mgr = [[StackOverflowManager alloc] init];
     delegate = [OCMockObject mockForProtocol:@protocol(StackOverflowManagerDelegate)];
-    mgr.delegate = delegate;
+    
+    // note: unlike the books code.. we DON'T set mgr.delegate = delegate here
+    // b/c for some reason that runs some expectation code on it.. and causes some tests
+    // to fail incorrectly..
+    // for example if you try setting it here.. you'll see testQuestionJSONIsPassedToQuestionBuilder
+    // failing with error message:
+    // [OCMockQuestionCreationTests testQuestionJSONIsPassedToQuestionBuilder] failed
+    // OCMockObject[StackOverflowManagerDelegate]: unexpected method invoked: fetchingQuestionsFailedWiotheRror: Error Domain=StackOverflowManagerSearchFailedError Code=0"The Operation couldn't be completed. (StacOverflowManagerSearchFailedError error 0.)"
+    //mgr.delegate = delegate;
+    
     underlyingError = [NSError errorWithDomain: @"Test domain"
                                           code: 0 userInfo: nil];
 }
@@ -65,12 +74,14 @@
 }
 
 - (void)testErrorReturnedToDelegateIsNotErrorNotifiedByCommunicator {
+    mgr.delegate = delegate;
     [[delegate expect] fetchingQuestionsFailedWithError:[OCMArg isNotEqual:underlyingError]];
     [mgr searchingForQuestionsFailedWithError:underlyingError];
     [delegate verify];
 }
 
 - (void)testErrorReturnedToDelegateDocumentsUnderlyingError {
+    mgr.delegate = delegate;
     [[delegate expect] fetchingQuestionsFailedWithError:[OCMArg checkWithBlock:^BOOL(id param) {
         return ([[param userInfo] objectForKey:NSUnderlyingErrorKey] == underlyingError);
     }]];
@@ -84,9 +95,11 @@
     [[builderMock expect] questionsFromJSON:@"Fake JSON" error:(NSError * __autoreleasing *)[OCMArg anyPointer]];
     [mgr receivedQuestionsJSON:@"Fake JSON"];
     [builderMock verify];
+    mgr.questionBuilder = nil;
 }
 
 - (void)testDelegateNotifiedOfErrorWhenQuestionBuilderFails {
+    mgr.delegate = delegate;
     id builderMock = [OCMockObject mockForClass:[QuestionBuilder class]];
     mgr.questionBuilder = builderMock;
     
