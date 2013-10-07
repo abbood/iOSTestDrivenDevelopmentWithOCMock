@@ -15,11 +15,11 @@
 #import "MockStackOverflowManagerDelegate.h"
 #import "FakeQuestionBuilder.h"
 
-@interface QuestionCreationTests : XCTestCase
+@interface OCMockQuestionCreationTests : XCTestCase
 
 @end
 
-@implementation QuestionCreationTests
+@implementation OCMockQuestionCreationTests
 
 {
 @private
@@ -31,6 +31,7 @@
 - (void)setUp {
     mgr = [[StackOverflowManager alloc] init];
     delegate = [OCMockObject mockForProtocol:@protocol(StackOverflowManagerDelegate)];
+    mgr.delegate = delegate;
     underlyingError = [NSError errorWithDomain: @"Test domain"
                                           code: 0 userInfo: nil];
 }
@@ -49,10 +50,6 @@
     XCTAssertNoThrow(mgr.delegate = delegate, @"object conforming to the delegate protocol should be used as the delegate");
 }
 
-- (void)testConformingObjectCanBeDelegateOCMock {
-    XCTAssertNoThrow(mgr.delegate = delegateMock, @"object conforming to the delegate protocol should be used as the delegate");
-}
-
 - (void)testManagerAcceptsNilAsADelegate {
     XCTAssertNoThrow(mgr.delegate = nil,
                      @"It should be acceptable to use nil as an object’s delegate");
@@ -68,57 +65,20 @@
 }
 
 - (void)testErrorReturnedToDelegateIsNotErrorNotifiedByCommunicator {
-    mgr.delegate = delegate;
-    [mgr searchingForQuestionsFailedWithError: underlyingError];
-    XCTAssertFalse(underlyingError == [delegate fetchError],
-                   @"Error should be at the correct level of abstraction");
-}
-
-// OCMock equivalent of the above
-- (void)testErrorReturnedToDelegateIsNotErrorNotifiedByCommunicatorOCMock {
-    mgr.delegate = delegateMock;
-    
-    [[delegateMock expect] fetchingQuestionsFailedWithError:[OCMArg isNotEqual:underlyingError]];
-    
+    [[delegate expect] fetchingQuestionsFailedWithError:[OCMArg isNotEqual:underlyingError]];
     [mgr searchingForQuestionsFailedWithError:underlyingError];
-    
-    [delegateMock verify];
+    [delegate verify];
 }
 
 - (void)testErrorReturnedToDelegateDocumentsUnderlyingError {
-    mgr.delegate = delegate;
-    [mgr searchingForQuestionsFailedWithError: underlyingError];
-    XCTAssertEqual([[[delegate fetchError] userInfo]
-                    objectForKey: NSUnderlyingErrorKey], underlyingError,
-                   @"The underlying error should be available to client code");
-}
-
-- (void)testErrorReturnedToDelegateDocumentsUnderlyingErrorOCMock {
-    mgr.delegate = delegateMock;
-    
-    
-    [[delegateMock expect] fetchingQuestionsFailedWithError:[OCMArg checkWithBlock:^BOOL(id param) {
-        
+    [[delegate expect] fetchingQuestionsFailedWithError:[OCMArg checkWithBlock:^BOOL(id param) {
         return ([[param userInfo] objectForKey:NSUnderlyingErrorKey] == underlyingError);
-        
     }]];
-    
     [mgr searchingForQuestionsFailedWithError: underlyingError];
-    
-    [delegateMock verify];
-    
+    [delegate verify];
 }
 
 - (void)testQuestionJSONIsPassedToQuestionBuilder {
-    FakeQuestionBuilder *builder = [[FakeQuestionBuilder alloc] init];
-    mgr.questionBuilder = builder;
-    [mgr receivedQuestionsJSON: @"Fake JSON"];
-    XCTAssertEqualObjects(builder.JSON, @"Fake JSON",
-                          @"Downloaded JSON is sent to the builder");
-    mgr.questionBuilder = nil;
-}
-
-- (void)testQuestionJSONIsPassedToQuestionBuilderOCMock {
     id builderMock = [OCMockObject mockForClass:[QuestionBuilder class]];
     mgr.questionBuilder = builderMock;
     [[builderMock expect] questionsFromJSON:@"Fake JSON" error:(NSError * __autoreleasing *)[OCMArg anyPointer]];
@@ -127,35 +87,18 @@
 }
 
 - (void)testDelegateNotifiedOfErrorWhenQuestionBuilderFails {
-    FakeQuestionBuilder *builder = [[FakeQuestionBuilder alloc] init];
-    builder.arrayToReturn = nil;
-    builder.errorToSet = underlyingError;
-    mgr.questionBuilder = builder;
-    // unlike the book, we take this out from the fixture
-    // b/c we change it depending on if unit test is using
-    // mock object or OCMock
-    mgr.delegate = delegate;
-    [mgr receivedQuestionsJSON: @"Fake JSON"];
-    XCTAssertNotNil([[[delegate fetchError] userInfo]
-                     objectForKey: NSUnderlyingErrorKey],
-                    @"The delegate should have found out about the error");
-    mgr.questionBuilder = nil;
-}
-
-- (void)testDelegateNotifiedOfErrorWhenQuestionBuilderFailsOCMock {
     id builderMock = [OCMockObject mockForClass:[QuestionBuilder class]];
     mgr.questionBuilder = builderMock;
-    mgr.delegate = delegateMock;
     
     [[[builderMock stub] andReturn:nil] questionsFromJSON:@"Fake JSON" error:[OCMArg setTo:underlyingError]];
-    [[delegateMock expect] fetchingQuestionsFailedWithError:[OCMArg checkWithBlock:^BOOL(id param) {
+    [[delegate expect] fetchingQuestionsFailedWithError:[OCMArg checkWithBlock:^BOOL(id param) {
         
         return ([[param userInfo] objectForKey:NSUnderlyingErrorKey] == underlyingError);
         
     }]];
     
     [mgr receivedQuestionsJSON: @"Fake JSON"];
-    [delegateMock verify];
+    [delegate verify];
     
     mgr.questionBuilder = nil;
 }

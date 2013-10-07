@@ -200,11 +200,11 @@
 			isa = PBXGroup;
 			children = (
 				D7044A60180283E60072A7AA /* OCMockQuestionCreationTests.m */,
+				D7044A47180163100072A7AA /* QuestionCreationTests.m */,
 				D7044A5318018D100072A7AA /* MockStackOverflowManagerDelegate.h */,
 				D7044A5418018D100072A7AA /* MockStackOverflowManagerDelegate.m */,
 				D7044A561801BAC20072A7AA /* FakeQuestionBuilder.h */,
 				D7044A571801BAC20072A7AA /* FakeQuestionBuilder.m */,
-				D7044A47180163100072A7AA /* QuestionCreationTests.m */,
 				D7C9CDC517FC855800B0B026 /* AnswerTests.m */,
 				D7C9CDC017FC340600B0B026 /* PersonTests.m */,
 				D7C9CDB117FC297E00B0B026 /* TopicTests.m */,
