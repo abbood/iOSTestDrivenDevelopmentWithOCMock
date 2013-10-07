@@ -43,8 +43,21 @@ NSString *StackOverflowManagerSearchFailedError = @"StackOverflowManagerSearchFa
 }
 
 - (void)receivedQuestionsJSON:(NSString *)objectNotation {
+    NSError *error = nil;
     NSArray *questions = [questionBuilder
-                          questionsFromJSON: objectNotation error: NULL];
+                          questionsFromJSON: objectNotation error: &error];
+    if (!questions) {
+        NSDictionary *errorInfo = nil;
+        if (error) {
+            errorInfo = [NSDictionary dictionaryWithObject: error
+                                                    forKey: NSUnderlyingErrorKey];
+        }
+        NSError *reportableError = [NSError
+                                    errorWithDomain: StackOverflowManagerSearchFailedError
+                                    code: StackOverflowManagerErrorQuestionSearchCode
+                                    userInfo: errorInfo];
+        [delegate fetchingQuestionsFailedWithError: reportableError];
+    }
 }
 
 @end

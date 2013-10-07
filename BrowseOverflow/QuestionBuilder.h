@@ -10,6 +10,7 @@
 
 @interface QuestionBuilder : NSObject
 
+@property (copy) NSString *JSON;
 - (NSArray *)questionsFromJSON: (NSString *)objectNotation
                          error: (NSError **)error;
 
